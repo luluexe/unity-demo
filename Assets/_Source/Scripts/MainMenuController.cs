@@ -2,40 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEditor;
 
-public class MainMenuController : MonoBehaviour { 
-
-    public GameObject options;
-    public GameObject mainmenu;
-
-    // Start is called before the first frame update
-    void Start() {
-        options.SetActive(false);
-        mainmenu.SetActive(true);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void MainMenu ()
-    {
-        SceneManager.LoadScene("MainMenu");
-    }
+public class MainMenuController : MonoBehaviour {     
 
     public void Play () {
-        SceneManager.LoadScene("Fase01");
-    }
+     SceneManager.LoadScene("Fase01");
+    }    
 
-    public void Options () {
-        options.SetActive(true);
-        mainmenu.SetActive(false);
-    }
+    public void Quit () {        
 
-    public void Quit () {
-        
     }
 
 }
