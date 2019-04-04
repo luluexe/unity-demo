@@ -91,7 +91,7 @@ QualitySettings:
     blendWeights: 2
     textureQuality: 0
     anisotropicTextures: 1
-    antiAliasing: 2
+    antiAliasing: 0
     softParticles: 0
     softVegetation: 1
     realtimeReflectionProbes: 1
@@ -113,14 +113,11 @@ QualitySettings:
     excludedTargetPlatforms: []
   m_PerPlatformDefaultQuality:
     Android: 1
-    Nintendo 3DS: 2
+    Lumin: 2
     Nintendo Switch: 2
     PS4: 2
-    PSP2: 1
     Standalone: 2
-    Tizen: 1
     WebGL: 2
-    WiiU: 2
     Windows Store Apps: 2
     XboxOne: 2
     iPhone: 1
