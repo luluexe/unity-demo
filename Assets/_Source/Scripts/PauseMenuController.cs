@@ -17,5 +17,21 @@ public class PauseMenuController : MonoBehaviour {
 
     public void PauseMenu () {
         pauseMenu.SetActive(true);
+              
     }
+
+    public void ResumeGame()
+    {
+        pauseMenu.SetActive(false);
+
+    }
+
+    void Update ()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            pauseMenu.SetActive(true);
+        }
+    }
+
 }

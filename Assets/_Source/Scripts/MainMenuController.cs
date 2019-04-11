@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEditor;
 
 public class MainMenuController : MonoBehaviour {     
 
@@ -10,8 +9,12 @@ public class MainMenuController : MonoBehaviour {
      SceneManager.LoadScene("Fase01");
     }    
 
-    public void Quit () {        
-
+    public void Quit () {
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        #else
+        Application.Quit ();
+        #endif
     }
 
 }

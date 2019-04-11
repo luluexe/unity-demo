@@ -40,7 +40,7 @@ public class SettingsMenuController : MonoBehaviour {
 
     //qualiy graphics
     public void SetQuality(int qualityIndex) {
-        QualitySettings.SetQualityLevel(qualityIndex);
+        QualitySettings.SetQualityLevel(qualityIndex    );
     }
 
     //fullscreen
