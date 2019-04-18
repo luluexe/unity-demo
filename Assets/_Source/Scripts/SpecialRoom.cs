@@ -5,33 +5,37 @@ using UnityEngine;
 public class SpecialRoom : MonoBehaviour
 {
 
-    public Material material01;
     public Material material02;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        GetComponent<Renderer>().material = material01;
-       
-    }
+    Dictionary<CharacterControl, Material[]> materialBank = new Dictionary<CharacterControl, Material[]>();
+
 
     public void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.tag == "SpecialRoom")
+        var character = col.GetComponent<CharacterControl>();
+        if (character != null)
         {
-            GetComponent<Renderer>().material = material02;
-            Invoke("material02", 1.0f);
-           
+            var renderers = character.GetComponentsInChildren<Renderer>();
+            var materials = new Material[renderers.Length];
+            for (int i = 0; i < renderers.Length; i++)
+            {
+                materials[i] = renderers[i].material;
+                renderers[i].material = material02;
+            }
+            materialBank.Add(character, materials);
         }
     }
 
     public void OnTriggerExit(Collider col)
     {
-        if (col.gameObject.tag == "SpecialRoom")
+        var character = col.GetComponent<CharacterControl>();
+        if (character != null)
         {
-            GetComponent<Renderer>().material = material01;
-            Invoke("material01", 1.0f);
-
+            var renderers = character.GetComponentsInChildren<Renderer>();
+            var materials = materialBank[character];
+            for (int i = 0; i < materials.Length; i++)
+                renderers[i].material = materials[i];
+            materialBank.Remove(character);
         }
     }
 }
