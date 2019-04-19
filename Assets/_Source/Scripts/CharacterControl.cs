@@ -12,7 +12,9 @@ public class CharacterControl : MonoBehaviour
     public float playerSpeed;
 
     public float jumpForce = 8.0f;
-    public float gravity = 20.0f;  
+    public float gravity = 20.0f;
+
+    Vector3 moveDirection = Vector3.zero;
 
 
     // Start is called before the first frame update
@@ -25,9 +27,19 @@ public class CharacterControl : MonoBehaviour
     void Update()
     {
         horizontalMove = Input.GetAxis("Horizontal");
-        verticalMove = Input.GetAxis("Vertical");      
+        verticalMove = Input.GetAxis("Vertical");
 
-
+        //jump       
+        if (Input.GetButton("Jump"))
+        {
+            moveDirection = new Vector2(0, verticalMove);
+            moveDirection = transform.TransformDirection(moveDirection);
+            moveDirection *= playerSpeed;
+            moveDirection.y = jumpForce;
+            
+        }       
+            moveDirection.y -= gravity * Time.deltaTime;
+            character.Move(moveDirection * Time.deltaTime);
     }
 
     //
