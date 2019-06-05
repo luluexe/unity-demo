@@ -1639,7 +1639,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7a9dd13ab9dde3448ea4890c23c0c23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 2700395614506191774, guid: a64ffc3792c55eb409f1476e66c70761, type: 3}
+  bullet: {fileID: 4997551594621195380, guid: a64ffc3792c55eb409f1476e66c70761, type: 3}
   bulletHole: {fileID: 5379170388311566280, guid: ee8dc70d07643d748bc3a2b5e00b656a,
     type: 3}
   delayTime: 0.5
