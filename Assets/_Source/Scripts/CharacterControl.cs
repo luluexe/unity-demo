@@ -4,48 +4,37 @@ using UnityEngine;
 
 public class CharacterControl : MonoBehaviour
 {
+    [SerializeField]
+    private float speed = 10.0F;
+    [SerializeField]
+    private float jumpSpeed = 10.0F;
+    [SerializeField]
+    private float gravity = 20.0F;
+    [SerializeField]
+    private float rotateSpeed = 100.0F;
 
-    float horizontalMove;
-    float verticalMove;
-    public CharacterController character;
-
-    public float playerSpeed;
-
-    public float jumpForce = 8.0f;
-    public float gravity = 20.0f;
-
-    Vector3 moveDirection = Vector3.zero;
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        character = GetComponent<CharacterController>();
-    }
+    private Vector3 moveDirection = Vector3.zero;
+        
 
     // Update is called once per frame
     void Update()
     {
-        horizontalMove = Input.GetAxis("Horizontal");
-        verticalMove = Input.GetAxis("Vertical");
 
-        //jump       
-        if (Input.GetButton("Jump"))
+        CharacterController controller = GetComponent<CharacterController>();
+        if (controller.isGrounded)
         {
-            moveDirection = new Vector2(0, verticalMove);
+            moveDirection = new Vector3(0, 0, Input.GetAxis("Vertical"));
             moveDirection = transform.TransformDirection(moveDirection);
-            moveDirection *= playerSpeed;
-            moveDirection.y = jumpForce;
-            
-        }       
-            moveDirection.y -= gravity * Time.deltaTime;
-            character.Move(moveDirection * Time.deltaTime);
+            moveDirection *= speed;
+            if (Input.GetButton("Jump"))
+                moveDirection.y = jumpSpeed;
+
+        }
+        moveDirection.y -= gravity * Time.deltaTime;
+        controller.Move(moveDirection * Time.deltaTime);
+
+        //Rotate Player
+        transform.Rotate(0, Input.GetAxis("Horizontal"), 0);
+
     }
-
-    //
-    private void FixedUpdate()
-    {
-        character.Move(new Vector3(horizontalMove, 0, verticalMove) * playerSpeed * Time.deltaTime);
-    }    
-
 }
